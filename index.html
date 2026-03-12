@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@ border-radius:10px;
 margin-bottom:20px;
 }
 
-input,textarea{
+input,textarea,select{
 width:100%;
 margin-top:5px;
 margin-bottom:10px;
@@ -75,6 +76,20 @@ color:#555;
 margin-top:8px;
 }
 
+.chip{
+display:inline-block;
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+color:white;
+margin-bottom:6px;
+}
+
+.igor{background:#3498db;}
+.suzy{background:#e91e63;}
+.pietra{background:#9b59b6;}
+.carlos{background:#f39c12;}
+
 </style>
 </head>
 
@@ -83,6 +98,14 @@ margin-top:8px;
 <h1>Fila de Correções</h1>
 
 <div class="form">
+
+<label>Responsável</label>
+<select id="responsavel">
+<option value="Igor">Igor</option>
+<option value="Suzy">Suzy</option>
+<option value="Pietra">Pietra</option>
+<option value="Carlos">Carlos</option>
+</select>
 
 <label>Texto + Links das correções</label>
 <textarea id="texto"></textarea>
@@ -119,13 +142,19 @@ function criarCard(){
 
 let texto = document.getElementById("texto").value
 let data = document.getElementById("data").value
+let responsavel = document.getElementById("responsavel").value
+
+let classeChip = responsavel.toLowerCase()
 
 let card = document.createElement("div")
 card.className = "card"
 
 card.innerHTML = `
+<span class="chip ${classeChip}">${responsavel}</span>
+
 <b>Correção</b>
 <p>${texto}</p>
+
 <small>Entrega: ${data}</small>
 
 <div class="move">
